@@ -58,7 +58,7 @@ The diversity and inclusion dataset is contained in a table named:
 - `HR Manager` which has `32 columns and 500 rows` of observation
 
 
-The tabulation below shows the `Customer Retention` table with its column names and their description:
+The tabulation below shows the `HR Manager` table with its column names and their description:
 | Column Name | Description |
 | ----------- | ----------- |
 | Employee ID |   Represents the unique number of the employee in the dataset |
