@@ -28,9 +28,9 @@ The purpose of this analysis is to:
 and metrics in the dataset.
 
 The following measures could help to define proper KPIs:
-- # of men
-- # of women
-- # of leavers
+- '#' of men
+- '#' of women
+- '#' of leavers
 - % employees promoted (FY21)
 - % of women promoted
 - % of hires men
@@ -44,7 +44,9 @@ The following measures could help to define proper KPIs:
 
 The Dataset used for this analysis was presented by [Pwc Switzerland](https://www.pwc.ch/en/careers-with-pwc/students/virtual-case-experience.html) and available at:
 
-- [Churn Dataset](https://github.com/globalsmile/Customer-Risk-Analysis/blob/main/02%20Churn-Dataset.xlsx)
+- [Diversity Inclusion Dataset](https://github.com/globalsmile/Diversity-and-Inclusion-Analysis/blob/main/03%20Diversity-Inclusion-Dataset.xlsx)
+
+
 ---
 
 # Data Preparation
@@ -59,7 +61,6 @@ The diversity and inclusion dataset is contained in a table named:
 The tabulation below shows the `Customer Retention` table with its column names and their description:
 | Column Name | Description |
 | ----------- | ----------- |
-
 | Employee ID |   Represents the unique number of the employee in the dataset |
 | Gender |  Describes the gender of the employee |
 | Job Level after FY20 promotions |  Describes the job level of the employee after being promoted in FY20 |
@@ -104,19 +105,20 @@ Data Cleaning for the dataset was done in power query as follows:
 
 # Data Modeling
 
-After the dataset was cleaned and transformed, it was ready to be modeled.
+After the dataset was cleaned and transformed, it was ready to be modeled(using Power BI Desktop).
 
-- A one-to-many (*:1) relationship was created between the `churn` and the `churn - unpivot` tables using the customerId column in each of the tables
-- The relationship formed in the data model is shown below:
+- The fact and dimension have been combined into one table and is shown in the data model below
 
-<img align="right" alt="Data Model" width="1000" height = "400" src="https://user-images.githubusercontent.com/106287208/187106255-bd25a422-fd74-4f5e-a529-7a9052915252.png">
+<img align="right" alt="Data Model" width="1000" height = "400" src="https://user-images.githubusercontent.com/106287208/194948691-bbb923e4-1805-4ff4-a9f7-0fb3e1b9f902.JPG">
+
 
 
 ---
 
+
 # Data Visualization
 
-Data visualization for the datasets was done in 2 folds using Microsoft Power BI Desktop:
+Data visualization for the dataset was done in 2 folds using Microsoft Power BI Desktop:
 
 -  The `HR Manger (1/2)` Page: Shows the hiring KPI, promotion KPI, Turnover Rate (FY20 leavers) KPI, e.t.c
 -  The `HR Manger (2/2)` Page: Shows the Performance rating KPI, Executive Gender Balance KPI, Age Group KPI, e.t.c
@@ -125,13 +127,14 @@ Figure 1 shows visualizations from `HR Manger (1/2)` page
 
 | Figure 1 |
 | ----------- |
-| ![image](https://user-images.githubusercontent.com/106287208/187567316-46bc6332-7507-4f11-b3c7-a18a52ed8e14.png) |
+| ![image](https://user-images.githubusercontent.com/106287208/194949076-adf39e10-97a7-46f1-a28f-8435fb9cf796.png) |
+
 
 Figure 2 shows visualizations from `HR Manger (2/2)` page
 
 | Figure 2 |
 | ----------- |
-| ![image](https://user-images.githubusercontent.com/106287208/187567316-46bc6332-7507-4f11-b3c7-a18a52ed8e14.png) |
+| ![image](https://user-images.githubusercontent.com/106287208/194949761-9e6634ed-b5ea-409b-98bb-01e99d21b2d3.png) |
 
 
 ---
@@ -140,32 +143,52 @@ Figure 2 shows visualizations from `HR Manger (2/2)` page
 
 Measures used in visualization are:
 
-- # of leavers = 
+- '#' of leavers = 
 ` CALCULATE(COUNTA('HR Manager'[Employee ID]), 'HR Manager'[Leaver FY] IN { "FY20" })`
-- # of men = ` Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Gender]="Male"))`
-- # of women = ` Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Gender]="Female"))`
+
+
+- '#' of men = ` Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Gender]="Male"))`
+
+
+- '#' of women = ` Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Gender]="Female"))`
+
+
 - % employees promoted (FY21) = `Divide(Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Promotion in FY21?]="Yes")),Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[In base group for Promotion FY21]="Yes")))`
+
+
 - % of hires men = `Divide('HR Manager'[# of men],('HR Manager'[# of men]+'HR Manager'[# of women]))`
+
+
 - % of hires women = ` Divide('HR Manager'[# of women],('HR Manager'[# of women]+'HR Manager'[# of men]))`
+
+
 - % Promotees who were men = `Divide(Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Gender]="Male")),distinctcount('HR Manager'[Employee ID]))`
+
+
 - % Promotees who were women = `Divide(Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[Gender]="Female")),distinctcount('HR Manager'[Employee ID]))`
+
+
 - % Turnover = `Divide(Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[FY20 leaver?]="Yes")),Divide(Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager','HR Manager'[In base group for turnover FY20]="Y"))+Calculate(distinctcount('HR Manager'[Employee ID]),Filter('HR Manager',NOT('HR Manager'[Department @01.07.2020]=BLANK()))),2))`
+
+
 - Avg Rating Men = `Calculate(Average('HR Manager'[FY20 Performance Rating]),Filter('HR Manager','HR Manager'[Gender]="Male"))`
+
+
 - Avg Rating Women = `Calculate(Average('HR Manager'[FY20 Performance Rating]),Filter('HR Manager','HR Manager'[Gender]="Female"))`
 
 
 
-As shown from [Data Visualization](https://github.com/globalsmile/Customer-Risk-Analysis#Data-Visualization), It can be deduced that:
+As shown from [Data Visualization](https://github.com/globalsmile/Diversity-and-Inclusion-Analysis#Data-Visualization), It can be deduced that:
 
-- `41%`of hires were female
-- `59%`of hires were male
-- `53.8%`of of promotees were women in the Junior Officer department, the highest for the year
+- `41%` of hires were female
+- `59%` of hires were male
+- `53.8%` of promotees were women in the Junior Officer category, the highest for the year
 
 ---
 
 # Insights
 
-As shown by [Data Visualization](https://github.com/globalsmile/Twitter-Sentiment-Analysis#Data-Visualization), It can be deduced that:
+As shown by [Data Visualization](https://github.com/globalsmile/Diversity-and-Inclusion-Analysis#Data-Visualization), It can be deduced that:
 
 - Avg Rating women `2.42%`
 - Avg Rating women `2.41%`
@@ -179,4 +202,4 @@ As shown by [Data Visualization](https://github.com/globalsmile/Twitter-Sentimen
 
 You can interact with the report here: 
 
-[Report](https://app.powerbi.com/view?r=eyJrIjoiZjMzMjk1ZDAtYzBjYy00OTZjLTk1YzQtMzI1MjE0NWFkOGYxIiwidCI6IjQ5ODY4YWYzLWNjNWYtNDIxNC04YjdmLTQwZjM3NDY0OWEwOSJ9)
+[Report](https://app.powerbi.com/view?r=eyJrIjoiOTQ1YTc3ZDUtNzZhNS00NzQwLTk1ZjgtNzgxNTMyYWU1OWE1IiwidCI6IjQ5ODY4YWYzLWNjNWYtNDIxNC04YjdmLTQwZjM3NDY0OWEwOSJ9)
