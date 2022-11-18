@@ -53,7 +53,7 @@ The Dataset used for this analysis was presented by [Pwc Switzerland](https://ww
 
 Data transformation was done in Power Query and the dataset was loaded into Microsoft Power BI Desktop for modeling.
 
-The diversity and inclusion dataset is contained in a table named:
+The diversity and inclusion dataset is given by a table named:
 
 - `HR Manager` which has `32 columns and 500 rows` of observation
 
