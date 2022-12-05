@@ -20,8 +20,6 @@
 
 # Problem Statement
 
-INTRO :This project is the final project from the [Pwc Switzerland Power BI virtual case experience internship program](https://www.theforage.com/virtual-internships/prototype/a87GpgE6tiku7q3gu/PwC-Digital-Up-skilling-Virtual-Case-Experience) which I completed on Forage.
-
 The purpose of this analysis is to: 
 - Define proper KPIs in hiring, promotion, performance and turnover
 - Create a visualisation for the HR manager that reflects all relevant Key Performance indicators(KPIs)
