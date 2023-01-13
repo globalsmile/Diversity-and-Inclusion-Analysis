@@ -1,5 +1,5 @@
 # Pwc Switzerland Power BI virtual case experience - Diversity and Inclusion Analysis
-<img align="right" alt="Diversity and Inclusion Analysis" width="1000" height = "400" src="https://www.pwc.ch/en/images/blog/virtual-case-experience/HC_Virtual%20Case%20Experience_1000x560_NWNS-Power%20BI.png">
+<img align="right" alt="Diversity and Inclusion Analysis" width="1000" height = "500" src="https://user-images.githubusercontent.com/106287208/194949076-adf39e10-97a7-46f1-a28f-8435fb9cf796.png">
 
 ---
 
